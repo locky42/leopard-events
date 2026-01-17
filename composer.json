@@ -2,7 +2,7 @@
     "name": "locky42/leopard-events",
     "description": "A library for handling PSR-14 events.",
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "authors": [
         {
             "name": "Максим Зінченко",

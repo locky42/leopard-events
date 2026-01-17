@@ -5,6 +5,12 @@ namespace Leopard\Events\Dispatcher;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\EventDispatcher\StoppableEventInterface;
 
+/**
+ * EventDispatcher is responsible for dispatching events to their respective listeners.
+ * 
+ * It implements the EventDispatcherInterface from PSR-14, allowing for standardized
+ * event dispatching within the application.
+ */
 class EventDispatcher implements EventDispatcherInterface
 {
     /**
@@ -28,9 +34,13 @@ class EventDispatcher implements EventDispatcherInterface
                 break;
             }
 
-            $listener['listener']($listener['object'] ?? $event);
+            if ($event == new $event()) {
+                $event = $listener['object'] ?? new $event();
+            }
+
+            $listener['listener']($event);
         }
         
-        return $listener['object'] ?? $event;
+        return $event;
     }
 }
